@@ -718,7 +718,7 @@ export interface Settings {
   publicUrl?: string // the address Mediarium is opened at; links in notification messages use it
   huntIntervalHours?: number // hours between searches for missing items and better versions, 1 to 168
   releaseCheckMinutes?: number // minutes between checks of each indexer's newest releases, 5 to 1440
-  downloadsAtOnce?: number // how many downloads run at the same time, 1 to 5 (the rest wait in line)
+  downloadsAtOnce?: number // how many downloads run at the same time, 1 to 500 (the rest wait in line)
   usenetRetentionDays?: number // Usenet posts older than this many days are not taken; 0 = no limit
   rejectExecutables?: boolean // refuse releases that hold programs or scripts; on unless switched off
   skipDuplicates?: boolean // do not download the same release twice; off unless switched on

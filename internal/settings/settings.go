@@ -169,7 +169,7 @@ const (
 	KeyAppLinks            = "apps.links"             // JSON list of add-ons: other programs next to Mediarium with a link to each (name, address, how it opens)
 	KeyQuietUntil          = "automation.quiet_until" // RFC 3339: until then the heavy background jobs do nothing ("Quiet for a while"); unset = not quiet
 	KeyNewestFirst         = "downloads.newest_first" // "1": among the downloads the automatic searches added, newer releases start first; unset = in the order they were added
-	KeyDownloadsConcurrent = "downloads.concurrent"   // how many downloads run at the same time, Usenet and torrents together: 1 to 5; unset = 1
+	KeyDownloadsConcurrent = "downloads.concurrent"   // how many downloads run at the same time, Usenet and torrents together: 1 to 500; unset = 1
 
 	// When the person accepted the legal notice (RFC 3339); unset until then.
 	KeyLegalAcknowledgedAt = "legal.acknowledged_at"

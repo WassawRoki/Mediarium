@@ -47,7 +47,7 @@ The keys the app stores in its settings table. You normally change these from th
 | `downloadclient.remove_on_stop` | "0" leaves a stopped or removed download's torrent in the client; unset or "1" removes it too (only an unfinished torrent Mediarium added itself) |
 | `downloadclient.url` | the client's web address, e.g. http://192.168.1.10:8080 |
 | `downloadclient.username` | the client's web login |
-| `downloads.concurrent` | how many downloads run at the same time, Usenet and torrents together: 1 to 5; unset = 1 |
+| `downloads.concurrent` | how many downloads run at the same time, Usenet and torrents together: 1 to 500; unset = 1 |
 | `downloads.hours` | when new downloads may start, "1-7" (from 1:00 to 7:00, server time); outside it they wait in line. Unset = any time |
 | `downloads.min_free_gb` | no new download starts while the downloads folder has less free space than this many GB; unset = 5, "0" = off |
 | `downloads.newest_first` | "1": among the downloads the automatic searches added, newer releases start first; unset = in the order they were added |

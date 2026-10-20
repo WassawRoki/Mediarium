@@ -8,6 +8,10 @@ under [Unreleased]. How releases are cut: [docs/RELEASING.md](docs/RELEASING.md)
 
 ## [Unreleased]
 
+### Changed
+
+- **Downloads at the same time** is a number box from 1 to 500 instead of five buttons, so a download client such as qBittorrent can run as many torrents at once as it did for Radarr and Sonarr. It saves by itself a moment after you stop typing. The API and the settings file accept the same range (`downloadsAtOnce`, `downloads.concurrent`).
+
 ## [3.2.19] - 2026-10-20
 
 In short: nzb360 and other phone apps show scores, naming has folder formats and TRaSH presets that save, size limits are separate for movies and TV, and long cards fold away.
