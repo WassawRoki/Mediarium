@@ -8,6 +8,14 @@ under [Unreleased]. How releases are cut: [docs/RELEASING.md](docs/RELEASING.md)
 
 ## [Unreleased]
 
+### Added
+
+- **Retry** in the bar for picked downloads in Activity. It tries again only the picked downloads that failed or were stopped, the same as **Retry** on each one, so **Pick all** then **Retry** retries every failure in one go.
+
+### Fixed
+
+- Picking more than 200 downloads and using the bar (Pause, Resume, Stop, Remove, To the front) no longer fails with "Pick at most 200 downloads at a time": a bigger pick is sent in batches.
+
 ## [3.7.0] - 2026-10-22
 
 In short: the calendar shows episodes on the day and hour they air in your own time zone.
