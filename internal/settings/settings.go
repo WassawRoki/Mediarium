@@ -28,6 +28,8 @@ const (
 	KeyRootsConfirmed      = "library.roots_confirmed"          // library folders Mediarium has seen with their .mediarium-root marker (a JSON list); one that loses its marker is refused until it is back
 	KeyMoviesExtraPaths    = "library.movies_extra_paths"       // more movie folders next to the main one (a JSON list of paths); each movie says which one its files go to
 	KeyTVExtraPaths        = "library.tv_extra_paths"           // the same for shows
+	KeyMoviesNewFolder     = "library.movies_new_folder"        // where a movie added without a folder choice is kept: unset = the main folder, a path = that one of the extra folders, "most-room" = whichever movie folder has the most free space at the time
+	KeyTVNewFolder         = "library.tv_new_folder"            // the same for shows
 	KeyMovieCopiesPath     = "library.movie_copies_path"        // where second copies of movies go (a 4K copy next to the 1080p one); unset = second copies of movies are off
 	KeyTVCopiesPath        = "library.tv_copies_path"           // the same for shows
 	KeyDownloadsPath       = "library.downloads_path"

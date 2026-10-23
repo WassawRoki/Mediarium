@@ -758,6 +758,10 @@ export interface Settings {
   minFreeGB?: number
   moviesExtraPaths?: string[] // more movie folders next to the main one
   tvExtraPaths?: string[] // more TV folders next to the main one
+  // Where a title added without a folder choice goes: "" the main folder, an
+  // extra folder's path, or "most-room" for whichever has the most free space.
+  moviesNewFolder?: string
+  tvNewFolder?: string
   torrentStallHours?: number // hours a torrent may get no data before it is given up on; 0 = never; -1 or absent = each client's own default
   notifyQuietHours?: string
   digestDay?: number // the day of the weekly summary, 0 is Sunday; -1 = none
@@ -2436,13 +2440,31 @@ export interface DiskUsage {
 }
 
 export interface DashFolder extends FolderCheck {
-  key: 'movies' | 'tv' | 'music' | 'ebooks' | 'audiobooks' | 'downloads'
+  // movies, tv, music, ebooks, audiobooks or downloads; an extra movie or TV
+  // folder is movies-extra-1, tv-extra-1 and so on.
+  key: string
   label: string
   libraryBytes: number
   items: number
   itemsLabel: string
   hardlinks?: boolean
   off?: boolean // that media type is switched off
+  newTitles?: boolean // titles added without a folder choice go here right now
+}
+
+// Where a title added without a folder choice goes right now: a path for
+// administrators, a label for everyone else. mostRoom: the rule is "the
+// folder with the most room", so the folder can change from day to day.
+export interface NewTitleFolder {
+  folder: string
+  mostRoom: boolean
+}
+
+// The folders a movie or a show can be kept in, the main one first.
+export interface LibraryFolders {
+  movies: string[]
+  tv: string[]
+  newTitles: { movies: NewTitleFolder; tv: NewTitleFolder }
 }
 
 export interface DashActive {
@@ -3568,7 +3590,7 @@ export const api = {
   searchNowSeries: (id: number, scope: { season?: number; episode?: number } = {}) =>
     post<{ grabbed: number; message: string }>(`/series/${id}/search-now`, scope),
   movieSearch: (id: number) => get<SearchAnswer<SearchResult>>(`/movies/${id}/search?detail=1`),
-  libraryFolders: () => get<{ movies: string[]; tv: string[] }>('/library/folders'),
+  libraryFolders: () => get<LibraryFolders>('/library/folders'),
   setMovieFolder: (id: number, rootPath: string) => put<{ rootPath: string }>(`/movies/${id}/folder`, { rootPath }),
   setSeriesFolder: (id: number, rootPath: string) => put<{ rootPath: string }>(`/series/${id}/folder`, { rootPath }),
   setMovieMonitored: (id: number, monitored: boolean) => put<null>(`/movies/${id}/monitored`, { monitored }),

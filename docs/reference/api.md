@@ -359,7 +359,7 @@ Every route the server exposes. Routes marked **public** need no sign-in; all ot
 | PUT | `/api/library/bulk/tags` | admin | adds and removes tags on the chosen titles (administrators). |
 | GET | `/api/library/counts` | any account | answers how many movies and shows the library has, for the Library's tabs, so a tab does not have to load the other tab's whole list just to show its number. |
 | GET | `/api/library/file-details` | any account | says how far the reading of the files has got, for the note in the Library. |
-| GET | `/api/library/folders` | any account | is GET /api/library/folders (any account): the folders a movie or a show can be kept in, the main one first. |
+| GET | `/api/library/folders` | any account | is GET /api/library/folders (any account): the folders a movie or a show can be kept in, the main one first, and under newTitles where a title added without ... |
 | POST | `/api/library/import` | admin | registers the reviewed selections. |
 | GET | `/api/library/import/active` | admin | lists what is going on: scans waiting to be reviewed or still running, imports still filling in details, and finished imports whose banner has not been dismi... |
 | GET | `/api/library/import/batches/{id}` | admin |  |

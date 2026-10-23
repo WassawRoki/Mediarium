@@ -3,6 +3,8 @@ import { sortProfiles } from './qualityBlurb'
 import { useEffect, useRef, useState } from 'react'
 import { api, can, isRequested, isViewer, type DashboardData, type QualityProfile, type RequestStatus, type SourcePref } from '../api'
 import { useAuth } from '../AuthContext'
+import type { NewTitleFolder } from '../api'
+import { addChoices, mostRoomNote } from '../newTitleFolder'
 import Icon from './Icon'
 import ViewerNotice from './ViewerNotice'
 import { TagChips, TagInput } from './Tags'
@@ -81,6 +83,7 @@ function AddForm({
   // The library folders to choose from, when more than one is set up (the main one first).
   const [folders, setFolders] = useState<string[]>([])
   const [rootPath, setRootPath] = useState('')
+  const [newNow, setNewNow] = useState<NewTitleFolder | undefined>()
   const [tags, setTags] = useState<string[]>([])
   const [knownTags, setKnownTags] = useState<string[]>([])
   useEffect(() => {
@@ -110,7 +113,13 @@ function AddForm({
     }).catch(() => undefined)
     api
       .libraryFolders()
-      .then((f) => setFolders(target.kind === 'movie' ? f.movies : f.tv))
+      .then((f) => {
+        const list = target.kind === 'movie' ? f.movies : f.tv
+        const now = target.kind === 'movie' ? f.newTitles.movies : f.newTitles.tv
+        setFolders(list)
+        setNewNow(now)
+        setRootPath(addChoices(list, now).initial)
+      })
       .catch(() => undefined)
     api.dashboard().then((d) => setDash(d.setup)).catch(() => undefined)
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -195,13 +204,13 @@ function AddForm({
                 <InfoTip text={t('The library folder this title is stored in once it is downloaded.')} />
               </span>
               <select value={rootPath} onChange={(e) => setRootPath(e.target.value)}>
-                <option value="">{t('{folder} (main)', { folder: folders[0] })}</option>
-                {folders.slice(1).map((f) => (
-                  <option key={f} value={f}>
-                    {f}
+                {addChoices(folders, newNow).options.map((o) => (
+                  <option key={o.value} value={o.value}>
+                    {o.label}
                   </option>
                 ))}
               </select>
+              {mostRoomNote(newNow) && <small className="path-note">{mostRoomNote(newNow)}</small>}
             </label>
           )}
 

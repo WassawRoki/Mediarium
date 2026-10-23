@@ -94,6 +94,7 @@ The keys the app stores in its settings table. You normally change these from th
 | `library.movie_folder_format` | token string; unset = "{Movie Title} ({Year})" |
 | `library.movie_name_format` | token string, used when preset=custom |
 | `library.movies_extra_paths` | more movie folders next to the main one (a JSON list of paths); each movie says which one its files go to |
+| `library.movies_new_folder` | where a movie added without a folder choice is kept: unset = the main folder, a path = that one of the extra folders, "most-room" = whichever movie folder has the most free space at the time |
 | `library.movies_path` |  |
 | `library.naming_preset` | plex\|jellyfin\|kodi\|minimal\|custom |
 | `library.presets_version` | revision of the built-in quality presets last applied; unset means never (set at start, not user-editable) |
@@ -104,6 +105,7 @@ The keys the app stores in its settings table. You normally change these from th
 | `library.trash_days` | days removed titles' files stay in the recycle bin (.mediarium-trash in the library folder); unset = 7, "0" = delete straight away |
 | `library.tv_copies_path` | the same for shows |
 | `library.tv_extra_paths` | the same for shows |
+| `library.tv_new_folder` | the same for shows |
 | `library.tv_path` | falls back to the TV_DIR env default when unset |
 | `library.unmonitor_downloaded` | "1" stops monitoring a movie once it is downloaded; unset or "0" keeps it monitored |
 | `library.unmonitor_finished_shows` | "1" stops monitoring a show once it has ended and every monitored episode is in; unset or "0" keeps it monitored |

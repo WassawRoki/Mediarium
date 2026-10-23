@@ -8,6 +8,16 @@ under [Unreleased]. How releases are cut: [docs/RELEASING.md](docs/RELEASING.md)
 
 ## [Unreleased]
 
+### Added
+
+- Settings > Library > Folders: under **More folders for other titles**, **New movies go to** and **New shows go to** say where a title goes when no folder is chosen: the main folder, one of the extra folders, or **the folder with the most room**, which looks at the free space each time a title is added, so two drives fill up side by side. The Add dialog starts on that folder, and titles from a Plex watchlist, an import list, a request, a followed collection or the Radarr and Sonarr compatible API go there too. The folder is decided when the title is added and stays with it. Scripts: `moviesNewFolder` and `tvNewFolder` in `PUT /api/settings`; `GET /api/library/folders` answers `newTitles`; settings keys `library.movies_new_folder` and `library.tv_new_folder`.
+- The Dashboard's **Connected folders** has a card for every movie and TV folder, not only the main ones, with what each holds and how much room is left, and "new titles go here" on the one in use.
+- The Radarr and Sonarr compatible API honours `rootFolderPath` when a movie or show is added (Seerr and Overseerr let you pick a root folder).
+
+### Fixed
+
+- Storage on the Dashboard's Server card counted one drive only on Docker Desktop (Windows, macOS): every folder shared from the host reports the same filesystem id, so a second drive holding more movie and TV folders was dropped from the total and the card showed the first drive as nearly full. Each drive now counts once.
+
 ## [3.7.3] - 2026-10-25
 
 In short: movie releases named with the maker in front of the title are found again, the nzb360 dashboard looks back 30 days, and the episode table fits a tablet.
